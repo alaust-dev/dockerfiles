@@ -5,6 +5,7 @@ RUN apk add --no-cache \
         ca-certificates \
         cyrus-sasl-dev \
         postfix \
+        opendkim \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 
 CMD ["/usr/sbin/postfix", "start-fg"]
