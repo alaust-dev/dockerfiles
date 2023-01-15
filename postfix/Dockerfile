@@ -1,4 +1,5 @@
 FROM alpine:latest
+MAINTAINER Alexander Aust mail@alexander-aust.de
 
 RUN apk add --no-cache \
         bash \
@@ -8,4 +9,7 @@ RUN apk add --no-cache \
         opendkim \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 
-CMD ["/usr/sbin/postfix", "start-fg"]
+COPY run.sh /
+RUN chmod +x /run.sh
+
+CMD ["/run.sh"]
