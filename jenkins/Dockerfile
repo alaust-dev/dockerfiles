@@ -7,6 +7,8 @@ RUN apt-get update && \
       ca-certificates \
       curl \
       gnupg2 \
+      sudo \
+      gcc \
       software-properties-common && \
     curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
     add-apt-repository \
@@ -16,4 +18,11 @@ RUN apt-get update && \
    apt-get update && \
    apt-get -y install docker-ce && \
    groupmod -g 998 docker && \
-   usermod -aG docker jenkins
+   usermod -aG docker jenkins && \
+   echo "jenkins ALL=(root:root) NOPASSWD: /usr/sbin/groupmod" >> /etc/sudoers
+
+COPY run.sh /
+RUN chmod +x /run.sh
+
+
+CMD ["/run.sh"]
