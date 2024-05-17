@@ -7,6 +7,7 @@ RUN apk add --no-cache \
         cyrus-sasl-dev \
         postfix \
         opendkim \
+        postfix-pgsql \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 
 COPY run.sh /
